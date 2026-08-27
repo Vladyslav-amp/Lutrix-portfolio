@@ -19,6 +19,6 @@ export default function App() {
       <Contact />
     </main>
     <Footer />
-    <PortfolioAgent />
+    {/* <PortfolioAgent /> */}
   </>;
 }
