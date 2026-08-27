@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Lutrix',
   role: 'FULL-STACK DEVELOPER / AI SOLUTIONS',
-  phone: '+48 123 456 789',
-  email: 'kontakt@twojadomena.dev',
+  phone: '',
+  email: '',
   github: 'https://github.com/',
   linkedin: 'https://linkedin.com/',
   location: 'Zdalnie / Polska / Europa',
