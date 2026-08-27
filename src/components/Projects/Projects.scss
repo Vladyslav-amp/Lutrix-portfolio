@@ -1,0 +1,10 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.projects {
+  &__list {
+    display: grid;
+    gap: 28px;
+    margin-top: 72px;
+  }
+}

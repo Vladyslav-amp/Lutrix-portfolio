@@ -1,0 +1,146 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+
+  &__glow {
+    position: absolute;
+    width: 760px;
+    height: 760px;
+    right: -130px;
+    top: -160px;
+    background: radial-gradient(circle,rgba(113,72,229,.22),transparent 64%);
+    filter: blur(12px);
+    pointer-events: none;
+  }
+
+  &__gridlines {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to right,transparent 0,black 45%,black 100%);
+    opacity: .42;
+  }
+
+  &__inner {
+    display: grid;
+    align-items: center;
+    padding-block: 100px;
+    @include sectionContainer;
+    grid-template-columns: 1fr;
+    gap: 40px;
+
+    @include onDesktop {
+      grid-template-columns: minmax(0, .93fr) minmax(520px, 1.07fr);
+      gap: 5vw;
+    }
+  }
+
+  &__copy {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    color: #bda8ff;
+    font-size: 11px;
+    letter-spacing: .17em;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  &__title {
+    line-height: .95;
+    letter-spacing: -.057em;
+    margin: 0;
+    max-width: 900px;
+    font-size: clamp(3rem, 10vw, 5rem);
+
+    @include onDesktop {
+      font-size: clamp(3.4rem, 5vw, 6.2rem);
+    }
+
+    span {
+      display: block;
+    }
+  }
+
+  &__accent {
+    @include goldText;
+  }
+
+  &__description {
+    font-size: clamp(1rem,1.18vw,1.18rem);
+    line-height: 1.78;
+    color: $secondary-text-color;
+    max-width: 680px;
+    margin: 24px 0;
+
+    @include onTablet {
+      margin: 34px 0;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  &__stack {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+
+    @include onTablet {
+      margin-top: 42px;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      color: #d8d5de;
+      background: rgba(255,255,255,.025);
+      font-size: 11px;
+    }
+
+    svg {
+      width: 14px;
+      color: $accent-color;
+    }
+  }
+
+  &__visual-wrap {
+    position: relative;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+    min-height: 320px;
+
+    @include onTablet {
+      min-height: 480px;
+    }
+
+    @include onDesktop {
+      min-height: 0;
+    }
+  }
+
+  min-height: auto;
+
+  @include onDesktop {
+    min-height: calc(100vh - 86px);
+  }
+}

@@ -1,0 +1,51 @@
+@use 'variables' as *;
+
+@mixin onDesktop {
+  @media (min-width: $desktop-min-width) {
+    @content;
+  }
+}
+
+@mixin onTablet {
+  @media (min-width: $tablet-min-width) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: 14px;
+
+  @include onTablet {
+    padding-inline: 32px;
+  }
+
+  @include onDesktop {
+    padding-inline: 80px;
+  }
+}
+
+@mixin sectionContainer {
+  @include container;
+  padding-block: 32px;
+
+  @include onDesktop {
+    padding-block: 64px;
+  }
+}
+
+@mixin card {
+  background: linear-gradient(145deg, rgba(18, 21, 29, .96), rgba(7, 9, 14, .98));
+  border: 1px solid rgba(231, 185, 101, .25);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .28);
+}
+
+@mixin goldText {
+  background: linear-gradient(90deg, #ffd88d, $accent-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

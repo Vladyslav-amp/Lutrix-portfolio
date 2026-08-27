@@ -1,0 +1,322 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.hero-visual {
+  position: relative;
+  aspect-ratio: 1.08;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 12%;
+    right: 4%;
+    bottom: 5%;
+    height: 18%;
+    background: radial-gradient(ellipse,rgba(98,58,196,.35),transparent 66%);
+    filter: blur(18px);
+    transform: rotateX(72deg);
+  }
+
+  &__orbit {
+    position: absolute;
+    inset: 12%;
+    border: 1px solid rgba(163,120,255,.16);
+    border-radius: 50%;
+    transform: rotateX(68deg) rotateZ(-12deg);
+    animation: orbit 16s linear infinite;
+
+    &--two {
+      inset: 23%;
+      border-style: dashed;
+      animation-direction: reverse;
+      animation-duration: 12s;
+    }
+  }
+
+  &__laptop {
+    position: absolute;
+    inset: 18% 8% 20% 13%;
+    transform: rotateY(-11deg) rotateX(4deg) rotateZ(-2deg);
+    transform-style: preserve-3d;
+  }
+
+  &__screen {
+    height: 78%;
+    border-radius: 22px;
+    border: 1px solid rgba(231,185,101,.28);
+    background: linear-gradient(145deg,#121625,#070910);
+    box-shadow: inset 0 0 0 8px #05060a,0 38px 70px rgba(0,0,0,.55),0 0 60px rgba(91,55,190,.14);
+    display: grid;
+    grid-template-columns: 1.45fr .72fr;
+    gap: 10px;
+    padding: 26px 22px 20px;
+    overflow: hidden;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg,transparent 0 38%,rgba(255,255,255,.035) 40%,transparent 43%);
+      pointer-events: none;
+    }
+  }
+
+  &__editor, &__panel {
+    border: 1px solid rgba(255,255,255,.07);
+    background: #090c14;
+    border-radius: 10px;
+    padding: 13px;
+    min-width: 0;
+  }
+
+  &__dots {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 12px;
+
+    i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #d7b46c;
+
+      &:nth-child(2) {
+        background: #9c73f1;
+      }
+
+      &:nth-child(3) {
+        background: #5d6080;
+      }
+    }
+  }
+
+  &__path {
+    font-size: 8px;
+    color: #8f85aa;
+  }
+
+  pre {
+    margin: 17px 0 0;
+    font: 500 clamp(7px,1vw,10px)/1.9 $font-code;
+    color: #bfc3d5;
+    white-space: pre-wrap;
+
+    b {
+      color: #b894ff;
+    }
+
+    em {
+      font-style: normal;
+      color: #e8bd70;
+    }
+  }
+
+  &__panel {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > span {
+      font-size: 7px;
+      letter-spacing: .17em;
+      color: #9c73f1;
+    }
+
+    strong {
+      font-size: clamp(1.6rem,3vw,2.8rem);
+      color: #f1d28e;
+      margin-top: 8px;
+    }
+
+    small {
+      color: #73798a;
+    }
+  }
+
+  &__bars {
+    height: 80px;
+    display: flex;
+    align-items: end;
+    gap: 5px;
+    margin-top: 18px;
+
+    i {
+      flex: 1;
+      background: linear-gradient(#a67cff,#4f318f);
+      border-radius: 3px 3px 0 0;
+      animation: pulsebar 3s ease-in-out infinite;
+
+      &:nth-child(1) {
+        height: 34%;
+      }
+
+      &:nth-child(2) {
+        height: 52%;
+        animation-delay: .2s;
+      }
+
+      &:nth-child(3) {
+        height: 46%;
+        animation-delay: .4s;
+      }
+
+      &:nth-child(4) {
+        height: 76%;
+        animation-delay: .6s;
+      }
+
+      &:nth-child(5) {
+        height: 92%;
+        animation-delay: .8s;
+      }
+    }
+  }
+
+  &__base {
+    position: absolute;
+    left: -5%;
+    right: -5%;
+    height: 21%;
+    top: 76%;
+    background: linear-gradient(180deg,#202332,#090a0f);
+    clip-path: polygon(8% 0,92% 0,100% 72%,93% 100%,7% 100%,0 72%);
+    border-top: 1px solid rgba(255,255,255,.16);
+    transform: rotateX(63deg);
+    transform-origin: top;
+  }
+
+  &__float {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 13px;
+    border-radius: 13px;
+    border: 1px solid rgba(231,185,101,.24);
+    background: rgba(8,10,16,.82);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 40px rgba(0,0,0,.34);
+    font-size: 9px;
+    letter-spacing: .08em;
+    animation: float 5s ease-in-out infinite;
+
+    svg {
+      width: 18px;
+      color: $accent-color;
+    }
+
+    b {
+      color: #85e0bd;
+      font-size: 8px;
+    }
+
+    &--bot {
+      top: 9%;
+      left: 5%;
+    }
+
+    &--api {
+      right: 0;
+      top: 25%;
+      animation-delay: -1.4s;
+      display: none;
+
+      @include onTablet {
+        display: flex;
+      }
+    }
+
+    &--db {
+      left: 3%;
+      bottom: 14%;
+      animation-delay: -2.8s;
+      display: none;
+
+      @include onTablet {
+        display: flex;
+      }
+    }
+  }
+
+  &__node {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg,#171a25,#090b10);
+    border: 1px solid rgba(162,121,255,.28);
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+    color: #b691ff;
+
+    &--code {
+      right: 9%;
+      bottom: 15%;
+      transform: rotate(7deg);
+    }
+
+    &--flow {
+      right: 2%;
+      top: 52%;
+      transform: rotate(-8deg);
+    }
+
+    &--git {
+      left: 27%;
+      top: 2%;
+      transform: rotate(10deg);
+      display: none;
+
+      @include onTablet {
+        display: grid;
+      }
+    }
+  }
+
+  &__spark {
+    position: absolute;
+    right: 24%;
+    top: 7%;
+    color: $accent-color;
+    filter: drop-shadow(0 0 12px rgba(231,185,101,.5));
+  }
+
+  width: 105%;
+  margin-left: -2.5%;
+
+  @include onTablet {
+    width: min(680px,100%);
+    margin-left: revert;
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-10px) rotateX(2deg);
+  }
+}
+
+@keyframes orbit {
+  to {
+    transform: rotateX(68deg) rotateZ(348deg);
+  }
+}
+
+@keyframes pulsebar {
+  50% {
+    filter: brightness(1.5);
+    transform: scaleY(.92);
+    transform-origin: bottom;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .hero-visual * {
+    animation: none!important;
+  }
+}

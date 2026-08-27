@@ -1,0 +1,110 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 86px;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 78% 8%, rgba(98, 58, 196, .10), transparent 24%), $background-color;
+  color: $text-color;
+  font-family: $font-primary;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.section-heading {
+  font-family: $font-heading;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.container {
+  @include container;
+}
+
+.section {
+  > .container {
+    @include sectionContainer;
+  }
+
+  &--spacious {
+    min-height: auto;
+    display: flex;
+    align-items: center;
+
+    @include onDesktop {
+      min-height: 72vh;
+    }
+  }
+
+  &__eyebrow {
+    display: block;
+    color: #8f67ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    margin-bottom: 18px;
+  }
+
+  &__intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: end;
+
+    p {
+      margin: 0;
+      color: $secondary-text-color;
+      line-height: 1.8;
+      font-size: 16px;
+      max-width: 620px;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2.35rem, 11vw, 3.5rem);
+    line-height: 1.01;
+    letter-spacing: -.048em;
+    font-weight: 650;
+    margin: 0;
+    max-width: 900px;
+
+    @include onTablet {
+      font-size: clamp(2.7rem, 4.7vw, 5.2rem);
+    }
+  }
+}
+
+::selection {
+  background: #7c55cc;
+  color: #fff;
+}
+
+// Shared semantic hooks for every section heading and its supporting copy.
+// Visual styles stay in the existing component/BEM classes.
+.section-heading,
+.section-description {
+  // Intentionally inherits the existing component styles.
+}

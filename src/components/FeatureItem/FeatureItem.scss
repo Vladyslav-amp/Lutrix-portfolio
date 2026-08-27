@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.feature-item {
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+
+  &__body {
+    display: grid;
+    gap: .2rem;
+  }
+
+  &__title {
+    font-size: .9rem;
+  }
+
+  &__text {
+    opacity: .68;
+    font-size: .78rem;
+    line-height: 1.45;
+  }
+}

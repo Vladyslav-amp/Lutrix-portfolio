@@ -1,0 +1,18 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.services {
+  background: linear-gradient(180deg,transparent,rgba(255,255,255,.012),transparent);
+
+  &__grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+    margin-top: 44px;
+
+    @include onTablet {
+      grid-template-columns: repeat(2,1fr);
+      margin-top: 70px;
+    }
+  }
+}

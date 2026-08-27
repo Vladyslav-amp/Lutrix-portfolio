@@ -1,0 +1,25 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.reveal {
+  opacity: 0;
+  transform: translateY(42px);
+  filter: blur(5px);
+  transition: opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1),filter .8s ease;
+  transition-delay: var(--reveal-delay,0ms);
+
+  &--visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

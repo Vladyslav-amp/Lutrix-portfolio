@@ -1,0 +1,573 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.contact-section {
+  position: relative;
+  overflow: hidden;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+    mask-image: linear-gradient(to bottom,transparent,black 18%,black 82%,transparent);
+    pointer-events: none;
+    background-size: 34px 34px;
+
+    @include onTablet {
+      background-size: 54px 54px;
+    }
+  }
+
+  &__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    pointer-events: none;
+    opacity: .1;
+
+    &--one {
+      width: 480px;
+      height: 480px;
+      background: #8054e8;
+      right: -170px;
+      top: 5%;
+      animation: contactGlow 10s ease-in-out infinite alternate;
+    }
+
+    &--two {
+      width: 360px;
+      height: 360px;
+      background: #d7a94f;
+      left: -180px;
+      bottom: 0;
+      opacity: .055;
+      animation: contactGlow 13s ease-in-out infinite alternate-reverse;
+    }
+  }
+}
+
+.contact {
+  position: relative;
+  display: grid;
+  align-items: center;
+
+  &__topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+
+    @include onTablet {
+      align-items: center;
+      margin-bottom: 42px;
+    }
+
+    .section__eyebrow {
+      margin: 0;
+    }
+  }
+
+  &__availability {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #7ccfac;
+    font: 700 8px/1 $font-code;
+    letter-spacing: .09em;
+    max-width: 115px;
+    line-height: 1.35;
+
+    @include onTablet {
+      max-width: revert;
+      line-height: revert;
+    }
+
+    i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #66d3a0;
+      box-shadow: 0 0 12px rgba(102,211,160,.7);
+      animation: contactPulse 1.8s ease-in-out infinite;
+    }
+  }
+
+  &__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 16px;
+    color: #a67cf7;
+    font: 700 9px/1 $font-code;
+    letter-spacing: .12em;
+    font-size: 8px;
+
+    @include onTablet {
+      font-size: revert;
+    }
+
+    svg {
+      width: 15px;
+    }
+  }
+
+  &__headline h2 {
+    line-height: .93;
+    letter-spacing: -.062em;
+    margin: 0;
+    font-weight: 650;
+    font-size: clamp(2.8rem,14vw,4.2rem);
+
+    @include onTablet {
+      font-size: clamp(3.4rem,8vw,5.8rem);
+    }
+
+    @include onDesktop {
+      font-size: clamp(3rem,5.2vw,5.8rem);
+    }
+
+    em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(231,185,101,.82);
+      text-shadow: 0 0 28px rgba(231,185,101,.06);
+    }
+  }
+
+  &__headline p {
+    max-width: 620px;
+    color: $secondary-text-color;
+    line-height: 1.8;
+    margin: 27px 0 0;
+    font-size: 12px;
+    margin-top: 20px;
+
+    @include onTablet {
+      font-size: 14px;
+      margin-top: revert;
+    }
+  }
+
+  &__signal {
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    margin: 28px 0 24px;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 7px;
+
+    @include onTablet {
+      height: 92px;
+      margin: 35px 0 31px;
+      display: flex;
+      grid-template-columns: revert;
+      gap: revert;
+    }
+  }
+
+  &__signal-line {
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg,transparent,rgba(164,119,255,.28),rgba(231,185,101,.32),transparent);
+    overflow: hidden;
+    left: 10%;
+    right: 10%;
+
+    @include onTablet {
+      left: 5%;
+      right: 5%;
+    }
+
+    span {
+      position: absolute;
+      top: -1px;
+      width: 75px;
+      height: 3px;
+      background: linear-gradient(90deg,transparent,#a87bff,transparent);
+      filter: drop-shadow(0 0 6px #8d60ed);
+      animation: signalTravel 3.4s linear infinite;
+    }
+  }
+
+  &__signal-card {
+    position: relative;
+    z-index: 2;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    background: rgba(8,11,17,.9);
+    box-shadow: 0 10px 30px rgba(0,0,0,.18);
+    animation: cardFloat 4.5s ease-in-out infinite;
+    width: auto;
+    min-height: 66px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 9px 5px;
+    gap: 5px;
+
+    @include onTablet {
+      width: 31%;
+      min-height: 58px;
+      display: flex;
+      place-items: revert;
+      text-align: revert;
+      padding: 12px;
+      gap: 10px;
+    }
+
+    &--b {
+      animation-delay: -1.4s;
+    }
+
+    &--c {
+      animation-delay: -2.8s;
+    }
+
+    > svg {
+      width: 16px;
+      color: #a97fff;
+    }
+
+    span {
+      display: grid;
+      gap: 3px;
+      letter-spacing: .06em;
+      font-size: 8px;
+
+      @include onTablet {
+        font-size: 9px;
+      }
+    }
+
+    b {
+      font: 8px/1 $font-code;
+      color: $accent-color;
+    }
+  }
+
+  &__details {
+    display: grid;
+    gap: 9px;
+    grid-template-columns: 1fr;
+
+    @include onTablet {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    > a, > div {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 13px 14px;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 12px;
+      background: rgba(10,13,19,.48);
+      color: #c7cad3;
+      font-size: 10px;
+      transition: .25s;
+    }
+
+    > a:hover {
+      border-color: rgba(167,119,255,.25);
+      background: rgba(145,91,239,.055);
+      transform: translateY(-2px);
+
+      .contact__detail-arrow {
+        color: $accent-color;
+        transform: translate(2px,-2px);
+      }
+    }
+
+    > div:last-child {
+      grid-column: auto;
+
+      @include onTablet {
+        grid-column: 1/-1;
+      }
+    }
+
+    a > span:nth-child(2), div > span:nth-child(2) {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    small {
+      color: #5f6675;
+      font: 7px/1 $font-code;
+      letter-spacing: .12em;
+    }
+
+    > a {
+      padding: 11px;
+
+      @include onTablet {
+        padding: 13px 14px;
+      }
+    }
+
+    > div {
+      padding: 11px;
+
+      @include onTablet {
+        padding: 13px 14px;
+      }
+    }
+  }
+
+  &__detail-icon {
+    flex: 0 0 auto;
+    width: 31px;
+    height: 31px;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    background: rgba(156,103,255,.075);
+    color: #aa81fa;
+
+    svg {
+      width: 14px;
+    }
+  }
+
+  &__detail-arrow {
+    width: 13px;
+    margin-left: auto;
+    color: #5d6370;
+    transition: .2s;
+  }
+
+  &__form-shell {
+    position: relative;
+    max-width: 760px;
+    width: 100%;
+    margin-inline: auto;
+    padding: 8px 0 17px;
+
+    @include onTablet {
+      padding: 22px;
+    }
+
+    @include onDesktop {
+      max-width: revert;
+      width: revert;
+      margin-inline: revert;
+    }
+  }
+
+  &__form-wrap {
+    position: relative;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,.085);
+    background: linear-gradient(145deg,rgba(18,21,30,.96),rgba(7,9,14,.96));
+    box-shadow: 0 40px 100px rgba(0,0,0,.38),inset 0 1px rgba(255,255,255,.035);
+    backdrop-filter: blur(16px);
+    padding: 21px 14px;
+    border-radius: 19px;
+
+    @include onTablet {
+      padding: 31px;
+      border-radius: 24px;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      padding: 1px;
+      background: linear-gradient(135deg,rgba(177,128,255,.35),transparent 34%,transparent 70%,rgba(231,185,101,.2));
+      -webkit-mask: linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      border-radius: 19px;
+
+      @include onTablet {
+        border-radius: 24px;
+      }
+    }
+  }
+
+  &__form-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+
+    @include onTablet {
+      padding-bottom: 24px;
+      margin-bottom: 24px;
+    }
+
+    > div:first-child {
+      display: grid;
+      gap: 7px;
+    }
+
+    span {
+      font: 700 8px/1 $font-code;
+      letter-spacing: .16em;
+      color: #9f75ef;
+    }
+
+    b {
+      font-size: 13px;
+
+      @include onTablet {
+        font-size: 15px;
+      }
+    }
+  }
+
+  &__form-index {
+    font: 600 28px/1 $font-code;
+    color: rgba(255,255,255,.16);
+    font-size: 22px;
+
+    @include onTablet {
+      font-size: revert;
+    }
+
+    span {
+      font-size: 9px;
+      color: #5d6370;
+    }
+  }
+
+  &__form-orbit {
+    position: absolute;
+    border: 1px solid rgba(154,105,246,.1);
+    border-radius: 30px;
+    pointer-events: none;
+    display: none;
+
+    @include onTablet {
+      display: revert;
+    }
+
+    &--one {
+      inset: 7px;
+      transform: rotate(2.2deg);
+      animation: frameDrift 6s ease-in-out infinite alternate;
+    }
+
+    &--two {
+      inset: 35px -4px -5px 34px;
+      border-color: rgba(231,185,101,.075);
+      transform: rotate(-2deg);
+      animation: frameDrift 7s -2s ease-in-out infinite alternate-reverse;
+    }
+  }
+
+  &__floating-note {
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 12px;
+    border: 1px solid rgba(102,211,160,.13);
+    border-radius: 999px;
+    background: #0b1012;
+    color: #75cda8;
+    font: 7px/1 $font-code;
+    letter-spacing: .08em;
+    box-shadow: 0 12px 28px rgba(0,0,0,.28);
+    animation: noteFloat 3.5s ease-in-out infinite;
+    right: 10px;
+    bottom: 0;
+
+    @include onTablet {
+      right: -5px;
+      bottom: -3px;
+    }
+
+    i {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6cd1a5;
+      box-shadow: 0 0 8px rgba(108,209,165,.7);
+    }
+  }
+
+  grid-template-columns: 1fr;
+  gap: 38px;
+
+  @include onTablet {
+    gap: 55px;
+  }
+
+  @include onDesktop {
+    grid-template-columns: minmax(0,.9fr) minmax(480px,1.1fr);
+    gap: clamp(55px,7vw,110px);
+  }
+
+  &__lead {
+    max-width: 760px;
+
+    @include onDesktop {
+      max-width: revert;
+    }
+  }
+}
+
+@keyframes signalTravel {
+  from {
+    left: -15%;
+  }
+
+  to {
+    left: 105%;
+  }
+}
+
+@keyframes cardFloat {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes contactPulse {
+  50% {
+    opacity: .4;
+    transform: scale(.75);
+  }
+}
+
+@keyframes frameDrift {
+  to {
+    transform: rotate(-1deg) translateY(-4px);
+  }
+}
+
+@keyframes noteFloat {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes contactGlow {
+  to {
+    transform: translate(60px,30px) scale(1.12);
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .contact-section__glow, .contact__availability i, .contact__signal-line span, .contact__signal-card, .contact__form-orbit, .contact__floating-note {
+    animation: none!important;
+  }
+}

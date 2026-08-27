@@ -1,0 +1,160 @@
+@use '../../styles/variables' as *;
+
+.button {
+  position: relative;
+  isolation: isolate;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 0 22px;
+  overflow: hidden;
+
+  border: 1px solid rgba(231, 185, 101, 0.38) !important;
+  border-radius: 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &__content {
+    position: relative;
+    z-index: 2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: linear-gradient(120deg,
+        #f7d99c 0%,
+        $accent-color 48%,
+        #c99038 100%);
+
+    transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+
+    pointer-events: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-color;
+    outline-offset: 4px;
+  }
+
+  &--main {
+    color: $button-text-color;
+    background: linear-gradient(120deg,
+        #f7d99c 0%,
+        $accent-color 48%,
+        #c99038 100%);
+
+    border-color: rgba(231, 185, 101, 0.75);
+
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 8px 24px rgba(231, 185, 101, 0.12);
+
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      z-index: 1;
+
+      width: 35%;
+      height: 200%;
+
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.55),
+          transparent);
+
+      transform: skewX(-20deg);
+      transition: left 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+
+      pointer-events: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+
+      border-radius: inherit;
+
+      background: radial-gradient(circle at 50% 100%,
+          rgba(255, 255, 255, 0.2),
+          transparent 55%);
+
+      opacity: 0;
+
+      transition: opacity 0.3s ease;
+
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: $button-text-color;
+      border-color: rgba(247, 217, 156, 0.95);
+
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        0 10px 32px rgba(231, 185, 101, 0.2),
+        0 0 18px rgba(231, 185, 101, 0.08);
+
+      &::before {
+        left: 130%;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--secondary {
+    color: $text-color;
+    background-color: #0b0d12;
+    // border-color: rgba(231, 185, 101, 0.55);
+    border-radius: 14px !important;
+
+    &::before {
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    &:hover {
+      color: $button-text-color !important;
+      border-color: rgba(231, 185, 101, 0.85);
+      box-shadow: 0 10px 28px rgba(231, 185, 101, 0.12);
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+}

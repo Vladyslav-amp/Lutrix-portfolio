@@ -1,0 +1,312 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.portfolio-agent {
+  position: fixed;
+  z-index: 90;
+
+  &__launcher {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(231,185,101,.32);
+    border-radius: 999px;
+    padding: 13px 17px;
+    color: #fff;
+    cursor: pointer;
+    min-height: 48px;
+    background: rgba(10, 12, 18, .94);
+    border-color: rgba(231, 185, 101, .28);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, .42);
+    font-weight: 650;
+    letter-spacing: .01em;
+    position: relative;
+
+    svg {
+      color: $accent-color;
+    }
+
+    span {
+      display: none;
+
+      @include onTablet {
+        display: revert;
+      }
+    }
+
+    > .portfolio-agent__online-dot {
+      top: 1px;
+      right: 1px;
+    }
+  }
+
+  &__panel {
+    width: min(390px,calc(100vw - 28px));
+    display: grid;
+    grid-template-rows: auto 1fr auto auto auto;
+    border: 1px solid rgba(231,185,101,.22);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    animation: agentIn .36s ease both;
+    height: min(570px,calc(100vh - 28px));
+
+    @include onTablet {
+      height: min(620px,calc(100vh - 38px));
+    }
+
+    border-radius: 18px;
+    background: rgba(8, 10, 15, .97);
+    border-color: rgba(255, 255, 255, .09);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, .58), 0 0 0 1px rgba(231, 185, 101, .04);
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 16px 17px;
+      background: rgba(255, 255, 255, .018);
+
+       > div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+      }
+
+      span {
+        font-size: 10px;
+        color: $secondary-text-color;
+      }
+
+      i {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #69d8a8;
+      }
+
+      button {
+        border: 0;
+        background: transparent;
+        color: #9b9eaa;
+        cursor: pointer;
+      }
+    }
+
+    > small {
+      display: flex;
+      gap: 6px;
+      padding: 0 12px 11px;
+      color: #6f7380;
+      font-size: 9px;
+
+      svg {
+        width: 12px;
+      }
+    }
+  }
+
+  &__avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    background: #11151d;
+    border: 1px solid rgba(231, 185, 101, .25);
+    color: $accent-color;
+    box-shadow: none;
+    font-family: $font-code;
+    font-size: 13px;
+    font-weight: 800;
+    position: relative;
+
+    > svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__messages {
+    overflow: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(231, 185, 101, .22) transparent;
+  }
+
+  &__message {
+    display: flex;
+    gap: 7px;
+    max-width: 88%;
+
+    svg {
+      width: 14px;
+      flex: 0 0 auto;
+      margin-top: 9px;
+      color: $accent-color;
+    }
+
+    p {
+      font-size: 12px;
+      line-height: 1.55;
+      margin: 0;
+      padding: 10px 12px;
+      border-radius: 13px;
+      color: #e8e8ed;
+      background: #11151d;
+      border: 1px solid rgba(255, 255, 255, .055);
+    }
+
+    &--user {
+      align-self: flex-end;
+
+      p {
+        background: rgba(231, 185, 101, .12);
+        border-color: rgba(231, 185, 101, .2);
+        color: $text-color;
+      }
+    }
+  }
+
+  &__suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    overflow: visible;
+    padding: 0 12px 10px;
+
+    button {
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 999px;
+      background: #0e1118;
+      color: #c8c9d0;
+      padding: 7px 9px;
+      font-size: 10px;
+      cursor: pointer;
+      transition: border-color .2s ease, color .2s ease, background .2s ease;
+      white-space: normal;
+      text-align: left;
+      line-height: 1.35;
+
+      &:hover {
+        border-color: rgba(231, 185, 101, .3);
+        color: $accent-color;
+        background: rgba(231, 185, 101, .05);
+      }
+    }
+  }
+
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255,255,255,.07);
+
+    input {
+      min-width: 0;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px;
+      background: #0c0f16;
+      color: #fff;
+      padding: 11px 12px;
+      outline: none;
+
+      &:focus {
+        border-color: rgba(231, 185, 101, .45);
+      }
+    }
+
+    button {
+      width: 42px;
+      border: 0;
+      border-radius: 12px;
+      color: $button-text-color;
+      cursor: pointer;
+      background: $accent-color;
+    }
+  }
+
+  right: 14px;
+  bottom: 14px;
+
+  @include onTablet {
+    right: 24px;
+    bottom: 24px;
+  }
+
+  &__launcher-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: $accent-color;
+    box-shadow: 0 0 0 5px rgba(231, 185, 101, .08);
+  }
+
+  &__launcher-icon {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: $accent-color;
+    background: rgba(231, 185, 101, .08);
+
+    svg {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  &__online-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #0b0e14;
+    border-radius: 50%;
+    background: #55d98a;
+    box-shadow: 0 0 0 0 rgba(85, 217, 138, .5);
+    animation: agentOnlinePulse 1.8s ease-out infinite;
+  }
+}
+
+@keyframes agentIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+@keyframes agentOnlinePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(85, 217, 138, .5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 7px rgba(85, 217, 138, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(85, 217, 138, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-agent__online-dot {
+    animation: none;
+  }
+}

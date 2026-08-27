@@ -1,0 +1,191 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.about {
+  &__layout {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 65px;
+
+    @include onDesktop {
+      grid-template-columns: .95fr 1.05fr;
+      gap: 9vw;
+    }
+  }
+
+  &__copy p {
+    color: $secondary-text-color;
+    line-height: 1.8;
+    font-size: 16px;
+    max-width: 720px;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+
+    span {
+      padding: 9px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      font-size: 10px;
+      color: #c7c9d1;
+    }
+  }
+
+  &__system {
+    position: relative;
+    aspect-ratio: 1;
+    max-width: 620px;
+    margin-inline: auto;
+    border-radius: 50%;
+    border: 1px solid rgba(160,111,255,.12);
+    background: radial-gradient(circle,rgba(107,66,199,.15),transparent 62%);
+    box-shadow: inset 0 0 70px rgba(84,50,160,.06);
+    width: min(100%,560px);
+    transform: scale(.92);
+
+    @include onTablet {
+      transform: revert;
+    }
+
+    @include onDesktop {
+      width: min(100%,620px);
+    }
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      border: 1px dashed rgba(231,185,101,.11);
+      border-radius: 50%;
+      inset: 16%;
+    }
+
+    &:after {
+      inset: 31%;
+      border-color: rgba(155,111,241,.14);
+    }
+  }
+
+  &__core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 35px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 6px;
+    background: linear-gradient(145deg,#171a27,#090b10);
+    border: 1px solid rgba(231,185,101,.25);
+    box-shadow: 0 30px 65px rgba(0,0,0,.4),0 0 55px rgba(102,62,194,.16);
+    z-index: 2;
+    width: 125px;
+    height: 125px;
+
+    @include onTablet {
+      width: 145px;
+      height: 145px;
+    }
+
+    svg {
+      color: $accent-color;
+      width: 38px;
+      height: 38px;
+    }
+
+    b {
+      font-size: 13px;
+      letter-spacing: .13em;
+    }
+
+    span {
+      font-size: 9px;
+      color: #777d8c;
+    }
+  }
+
+  &__sat {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 5px;
+    background: #0d1017;
+    border: 1px solid rgba(255,255,255,.09);
+    box-shadow: 0 20px 40px rgba(0,0,0,.28);
+    z-index: 2;
+    color: #ae89ff;
+    animation: aboutFloat 5.5s ease-in-out infinite;
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+
+    @include onTablet {
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+    }
+
+    svg {
+      width: 25px;
+    }
+
+    span {
+      font-size: 8px;
+      letter-spacing: .11em;
+      color: #b9bbc4;
+    }
+
+    &--front {
+      left: 8%;
+      top: 18%;
+    }
+
+    &--back {
+      right: 5%;
+      top: 16%;
+      animation-delay: -1s;
+    }
+
+    &--api {
+      right: -2%;
+      top: 52%;
+      animation-delay: -2s;
+    }
+
+    &--ai {
+      right: 18%;
+      bottom: 2%;
+      animation-delay: -3s;
+    }
+
+    &--flow {
+      left: 15%;
+      bottom: 5%;
+      animation-delay: -4s;
+    }
+
+    &--cloud {
+      left: -1%;
+      top: 54%;
+      animation-delay: -5s;
+    }
+  }
+}
+
+@keyframes aboutFloat {
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  .about__sat {
+    animation: none;
+  }
+}
